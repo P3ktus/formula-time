@@ -1,18 +1,15 @@
-import fs from "fs";
-import path from "path";
 import Sequelize from "sequelize";
-const db = {};
+import Circuits from "./Circuits";
 
 const config = {
-  port: 8000,
+  port: 5432,
   db: {
-    database: "formula-time",
-    user: "user",
-    password: "pwd",
+    database: "formula_db",
+    user: "postgres",
+    password: "root",
     options: {
-      dialect: "sqlite",
+      dialect: "postgres",
       host: "localhost",
-      storage: path.resolve(__dirname, "../../db.sqlite"),
     },
   },
 };
@@ -24,20 +21,7 @@ const sequelize = new Sequelize(
   config.db.options
 );
 
-fs.readdirSync(__dirname)
-  .filter((file) => file !== "index.js")
-  .forEach((file) => {
-    const model = sequelize.import(path.join(__dirname, file));
-    db[model.name] = model;
-  });
-
-Object.keys(db).forEach(function (modelName) {
-  if ("associate" in db[modelName]) {
-    db[modelName].associate(db);
-  }
-});
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
-module.exports = db;
+export default {
+  sequelize,
+  //Circuits: Circuits(sequelize),
+};
