@@ -6,20 +6,34 @@
     <h3 class="lead mb-4">Orario locale: {{myTime}}</h3>
     <h3 class="lead mb-4">Orario del circuito: {{circuitTime}}</h3>
 
-    <div class="container-md px-4 py-5 fs-4">
+    <div class="row px-4 fs-4" id="legenda">
+      <div class="col-md-auto">
+          Sessione
+        </div>
+        <div class="col-md-auto">
+          Data
+        </div>
+        <div class="col-md-auto">
+          Orario locale
+        </div>
+        <div class="col-md-auto">
+          Orario circuito
+        </div>
+    </div>
+    <div class="container-md px-4 fs-4" v-for="sessione in sessioni" :key="sessione" id="riga">
 
-      <div class="row px-4 py-4" id="redRow">
-        <li class="col-md-auto" v-for="sessione in sessioni" :key="sessione.nomeSessione">
+      <div class="row px-4 py-4">
+        <div class="col-md-auto">
           {{sessione.nomeSessione}}
-        </li>
-        <div class="col-md-auto">
-          {{date}}
         </div>
         <div class="col-md-auto">
-          {{sessionMyTime}}
+          {{sessione.date}}
         </div>
         <div class="col-md-auto">
-          {{sessionTrackTime}}
+          {{sessione.sessionMyTime}}
+        </div>
+        <div class="col-md-auto">
+          {{sessione.sessionTrackTime}}
         </div>
       </div>
 
@@ -46,8 +60,26 @@ export default {
           sessionTrackTime: '19:00'
       },
       {
-          nomeSessione: 'PL1',
+          nomeSessione: 'PL2',
           date: '18/8',
+          sessionMyTime: '18:00',
+          sessionTrackTime: '19:00'
+      },
+      {
+          nomeSessione: 'PL3',
+          date: '19/8',
+          sessionMyTime: '18:00',
+          sessionTrackTime: '19:00'
+      },
+      {
+          nomeSessione: 'quali',
+          date: '19/8',
+          sessionMyTime: '18:00',
+          sessionTrackTime: '19:00'
+      },
+      {
+          nomeSessione: 'gara',
+          date: '20/8',
           sessionMyTime: '18:00',
           sessionTrackTime: '19:00'
       }]
@@ -60,12 +92,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  #redRow{
+  #riga:nth-child(even){
+    background-color: white;
+    color: black;
+  }
+  
+  #riga:nth-child(odd){
     background-color: #e10600;
     color: white;
   }
-  #whiteRow{
-    background-color: white;
+
+  #legenda{
+    background-color: lightgrey;
     color: black;
   }
 </style>
