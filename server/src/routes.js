@@ -6,11 +6,11 @@ router.get("/getNextEvent", async (req, res) => {
   const startDate = new Date();
   const endDate = new Date().setDate(startDate.getDate() + 1);
   res.json({
-    nome: "Gran Premio di America",
+    name: "Gran Premio di America",
     startDate: startDate,
     endDate: endDate,
     timezone: "America/New_York",
-    schedule: [
+    sessioni: [
       {
         nome: "F_1",
         date: new Date(),
@@ -31,6 +31,5 @@ router.get("/getNextEvent", async (req, res) => {
 });
 
 export default router;
-
 
 //COMMENTS
