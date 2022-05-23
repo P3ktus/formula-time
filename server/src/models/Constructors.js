@@ -1,33 +1,21 @@
 import { DataTypes } from "sequelize";
 import sequelize from "./initOrm";
 
-const Circuit = sequelize.define(
-  "circuits",
+const Constructor = sequelize.define(
+  "constructors",
   {
-    circuit_id: {
+    constructor_id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
       autoIncrement: true,
     },
-    circuit_ref: {
+    constructor_ref: {
       type: DataTypes.STRING,
     },
     name: {
       type: DataTypes.STRING,
     },
-    location: {
-      type: DataTypes.STRING,
-    },
-    country: {
-      type: DataTypes.STRING,
-    },
-    lat: {
-      type: DataTypes.DOUBLE,
-    },
-    lng: {
-      type: DataTypes.DOUBLE,
-    },
-    alt: {
+    nationality: {
       type: DataTypes.STRING,
     },
     url: {
@@ -39,4 +27,4 @@ const Circuit = sequelize.define(
   }
 );
 
-export default Circuit;
+export default Constructor;
