@@ -7,8 +7,7 @@ router.get("/getNextEvent", async (req, res) => {
   const endDate = new Date().setDate(startDate.getDate() + 1);
   res.json({
     name: "Gran Premio di America",
-    startDate: startDate,
-    endDate: endDate,
+    date: new Date(),
     timezone: "America/New_York",
     sessioni: [
       {
