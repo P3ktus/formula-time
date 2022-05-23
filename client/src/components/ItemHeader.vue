@@ -5,6 +5,7 @@
     <a href="#home">{{home}}</a>
     <a href="#calendario">{{calendario}}</a>
     <a href="#classifica">{{classifica}}</a>
+    <a href="#piloti">{{piloti}}</a>
     <a href="#storico">{{storico}}</a>
     </div>
   </header>
@@ -18,6 +19,7 @@ export default {
       home: 'Home',
       calendario: 'Calendario',
       classifica: 'Classifica',
+      piloti: 'Piloti',
       storico: 'Storico',
     }
   }

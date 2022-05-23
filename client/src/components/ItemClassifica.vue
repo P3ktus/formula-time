@@ -2,24 +2,19 @@
   <div class="px-4 py-5 my-5 text-center">
     <div v-if="event">
       <h1 class="display-5 fw-bold">{{event.name}}</h1>
-      <h3 class="lead mb-4">{{event.startDate}}</h3>
-      <h3 class="lead mb-4">{{event.endDate}}</h3>
-      <img class="img-fluid" :src="circuitLayout" alt="circuitLayout.png"> <!-- immagine responsive !-->
-      <h3 class="lead mb-4">Orario locale: {{event.myTime}}</h3>
-      <h3 class="lead mb-4">Orario del circuito: {{event.circuitTime}}</h3>
 
       <div class="container-md px-4 fs-4" id="legenda">
         <div class="col-sm-4">
-            Sessione
+            Posizione
           </div>
           <div class="col-sm-4">
-            Data
+            Nome
           </div>
           <div class="col-sm-4">
-            Orario locale
+            Scuderia
           </div>
           <div class="col-sm-4">
-            Orario circuito
+            Punti
           </div>
       </div>
       <div class="container-md px-4 fs-4" v-for="sessione in event.sessioni" :key="sessione" id="riga">

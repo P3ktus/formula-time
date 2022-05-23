@@ -5,6 +5,7 @@
       <li class="nav-item"><a href="#" class="nav-link px-2">{{home}}</a></li>_
       <li class="nav-item"><a href="#" class="nav-link px-2">{{calendario}}</a></li>_
       <li class="nav-item"><a href="#" class="nav-link px-2">{{classifica}}</a></li>_
+      <li class="nav-item"><a href="#" class="nav-link px-2">{{piloti}}</a></li>_
       <li class="nav-item"><a href="#" class="nav-link px-2">{{storico}}</a></li>
     </ul>
     <p class="text-center">© 2022 FormulaTime</p>
@@ -20,6 +21,7 @@ export default {
       home: 'Home',
       calendario: 'Calendario',
       classifica: 'Classifica',
+      piloti: 'Piloti',
       storico: 'Storico',
     }
   }

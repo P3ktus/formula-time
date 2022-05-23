@@ -1,6 +1,7 @@
 <template>
   <div>
     <ItemHeader />
+    <ItemCalendario /> <!-- da togliere !-->
     <ItemGranpremio :event="event"  />
     <ItemFooter />
   </div>
@@ -11,13 +12,15 @@ import axios from "axios"
 import ItemHeader from './components/ItemHeader.vue'
 import ItemFooter from './components/ItemFooter.vue'
 import ItemGranpremio from './components/ItemGranpremio.vue'
+import ItemCalendario from './components/ItemCalendario.vue' //da togliere
 
 export default {
   name: 'App',
   components: {
     ItemHeader,
     ItemFooter,
-    ItemGranpremio
+    ItemGranpremio,
+    ItemCalendario //da togliere
   },
   data () {
     return {
@@ -41,5 +44,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #fafafa;
 }
 </style>
