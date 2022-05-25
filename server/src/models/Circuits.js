@@ -33,6 +33,7 @@ const Circuit = sequelize.define(
     url: {
       type: DataTypes.TEXT,
     },
+    
   },
   {
     timestamps: false,
