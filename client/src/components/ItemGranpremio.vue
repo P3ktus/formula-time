@@ -7,7 +7,7 @@
       <h3 class="lead mb-4">Orario locale: {{event.myTime}}</h3>
       <h3 class="lead mb-4">Orario del circuito: {{event.circuitTime}}</h3>
 
-      <div class="container-md px-4 fs-4" id="legenda">
+      <div class="container-md row px-4 fs-4" id="legenda">
         <div class="col-sm-4">
             Sessione
           </div>
