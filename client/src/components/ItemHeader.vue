@@ -2,12 +2,12 @@
   <header>
     <a class="logo">{{logo}}</a>
   <div class="header-right">
-    <a href="#home">{{home}}</a>
-    <a href="#calendario">{{calendario}}</a>
-    <a href="#classifica">{{classifica}}</a>
-    <a href="#piloti">{{piloti}}</a>
-    <a href="#storico">{{storico}}</a>
-    </div>
+    <router-link to="/">Home</router-link>
+    <router-link to="/calendario">Calendario</router-link>
+    <router-link to="/classifica">Classifica</router-link>
+    <router-link to="/piloti">Piloti</router-link>
+    <router-link to="/storico">Storico</router-link>
+  </div>
   </header>
 </template>
 
@@ -16,8 +16,6 @@ export default {
   data () {
     return {
       logo: 'FormulaTime',
-      home: 'Home',
-      calendario: 'Calendario',
       classifica: 'Classifica',
       piloti: 'Piloti',
       storico: 'Storico',

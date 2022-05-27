@@ -1,26 +1,22 @@
 <template>
-  <div>
-    <ItemHeader />
-    <ItemCalendario /> <!-- da togliere !-->
-    <ItemGranpremio :event="event"  />
-    <ItemFooter />
+  <div id="nav">
+    <ItemHeader/>
+    <router-view/>
+    <ItemFooter/>
   </div>
 </template>
 
 <script>
+
 import axios from "axios"
 import ItemHeader from './components/ItemHeader.vue'
 import ItemFooter from './components/ItemFooter.vue'
-import ItemGranpremio from './components/ItemGranpremio.vue'
-import ItemCalendario from './components/ItemCalendario.vue' //da togliere
 
 export default {
   name: 'App',
   components: {
     ItemHeader,
-    ItemFooter,
-    ItemGranpremio,
-    ItemCalendario //da togliere
+    ItemFooter
   },
   data () {
     return {
@@ -28,7 +24,7 @@ export default {
     }
   },
   mounted() {
-    axios.get("http://localhost:8000/getNextEvent", {params: {eventId: "xxx"}}).then((res) => {
+    axios.get("http://localhost:8000/getEvent", {params: {eventId: "xxx"}}).then((res) => {
       console.log("First", res.data, res.data.name);
       this.event = {...res.data, startDate: new Date(res.data.startDate), endDate: new Date(res.data.endDate)};
     })
@@ -44,6 +40,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #fafafa;
 }
+
 </style>
