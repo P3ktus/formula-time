@@ -1,7 +1,9 @@
 <template>
   <div id="nav">
     <ItemHeader/>
-    <router-view/>
+    <div class="content-container">
+      <router-view/>
+    </div>
     <ItemFooter/>
   </div>
 </template>
@@ -24,9 +26,9 @@ export default {
     }
   },
   mounted() {
-    axios.get("http://localhost:8000/getEvent", {params: {eventId: "xxx"}}).then((res) => {
+    axios.get("http://localhost:8000/event").then((res) => {
       console.log("First", res.data, res.data.name);
-      this.event = {...res.data, startDate: new Date(res.data.startDate), endDate: new Date(res.data.endDate)};
+      this.event = {...res.event.data, startDate: new Date(res.data.startDate), endDate: new Date(res.data.endDate)};
     })
 
   }
@@ -40,6 +42,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+ min-height: 100vh;
 }
+
+body {
+  min-height: 100vh;
+}
+
+#nav {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-container {
+  flex: 1;
+}
+
 
 </style>
