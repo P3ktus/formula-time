@@ -1,5 +1,12 @@
 import { Op } from "sequelize";
-import { Races, Results, Circuits, Sessions } from "../models/index";
+import {
+  Races,
+  Results,
+  Circuits,
+  Sessions,
+  Drivers,
+  Constructors,
+} from "../models/index";
 import { pick } from "lodash";
 
 export const getEvent = [
@@ -12,8 +19,9 @@ export const getEvent = [
     } else {
       event = await getCurrentEvent();
     }
-
+    console.log("Got Event");
     const results = await getRaceResults(event.race_id);
+    console.log("Got Results");
 
     res.json({
       event,
@@ -65,11 +73,8 @@ const getCurrentEvent = async () => {
 
 const getRaceResults = async (race_id) => {
   return Results.findAll({
-    where: {
-      race_id: {
-        [Op.eq]: race_id,
-      },
-    },
+    where: { race_id: { [Op.eq]: race_id } },
+    include: [Drivers],
   });
 };
 
