@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import sequelize from "./models";
+import { sequelize } from "./models";
 import GenericRouter from "./routes";
 
 const PORT = 8000;

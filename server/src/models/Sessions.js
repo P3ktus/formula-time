@@ -1,30 +1,24 @@
 import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
-  const Constructor = sequelize.define(
-    "constructors",
+  const Session = sequelize.define(
+    "sessions",
     {
-      constructor_id: {
+      session_id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
         autoIncrement: true,
       },
-      constructor_ref: {
-        type: DataTypes.STRING,
-      },
       name: {
         type: DataTypes.STRING,
       },
-      nationality: {
-        type: DataTypes.STRING,
-      },
-      url: {
-        type: DataTypes.TEXT,
+      datetime: {
+        type: DataTypes.DATE,
       },
     },
     {
       timestamps: false,
     }
   );
-  return Constructor;
+  return Session;
 };

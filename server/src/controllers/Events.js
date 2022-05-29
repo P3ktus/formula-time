@@ -1,7 +1,6 @@
-import {} from "express-validator";
-import Races from "../models/Races";
-import Results from "../models/Results";
 import { Op } from "sequelize";
+import { Races, Results, Circuits, Sessions } from "../models/index";
+import { pick } from "lodash";
 
 export const getEvent = [
   async (req, res) => {
@@ -9,13 +8,7 @@ export const getEvent = [
 
     let event;
     if (race_id != null) {
-      event = await Races.findOne({
-        where: {
-          race_id: {
-            [Op.eq]: race_id,
-          },
-        },
-      });
+      event = await buildEvent(race_id);
     } else {
       event = await getCurrentEvent();
     }
@@ -39,8 +32,6 @@ export const getCalendar = [
 
     const currentEvent = await getCurrentEvent();
 
-    console.log(currentEvent);
-
     const races = await Races.findAll({
       where: {
         datetime: {
@@ -60,7 +51,7 @@ export const getCalendar = [
 const getCurrentEvent = async () => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  return Races.findOne({
+  const race = await Races.findOne({
     where: {
       datetime: {
         [Op.gt]: today,
@@ -69,6 +60,7 @@ const getCurrentEvent = async () => {
     order: [["datetime", "ASC"]],
     limit: 1,
   });
+  return buildEvent(race.race_id);
 };
 
 const getRaceResults = async (race_id) => {
@@ -79,4 +71,34 @@ const getRaceResults = async (race_id) => {
       },
     },
   });
+};
+
+const buildEvent = async (race_id) => {
+  const race = await Races.findOne({
+    where: { race_id: { [Op.eq]: race_id } },
+    include: [Circuits],
+  });
+  const sessions = await Sessions.findAll({
+    where: { race_id: { [Op.eq]: race_id } },
+  });
+  const schedule = [
+    ...sessions,
+    { race_id: race.race_id, name: "Gara", datetime: race.datetime },
+  ];
+
+  const event = {
+    ...pick(race, [
+      "race_id",
+      "year",
+      "round",
+      "name",
+      "date",
+      "time",
+      "url",
+      "datetime",
+      "circuit",
+    ]),
+    schedule,
+  };
+  return event;
 };
