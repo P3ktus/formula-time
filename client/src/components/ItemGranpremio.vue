@@ -1,26 +1,26 @@
 <template>
   <div class="px-4 py-5 my-5 text-center">
-    <div v-if="event">
-      <h1 class="display-5 fw-bold">{{event.name}}</h1>
-      <h3 class="lead mb-4">{{event.date}}</h3>
+    <div v-if="race">
+      <h1 class="display-5 fw-bold">{{race.event.name}}</h1>
+      <h3 class="lead mb-4">{{race.event.datetime.format("DD/MM/YYYY")}}</h3>
       <img class="img-fluid" :src="circuitLayout" alt="circuitLayout.png"> <!-- immagine responsive !-->
-      <h3 class="lead mb-4">Orario locale: {{event.myTime}}</h3>
-      <h3 class="lead mb-4">Orario del circuito: {{event.circuitTime}}</h3>
+      <h3 class="lead mb-4">Orario locale: {{now.tz(myTimezone).format("H:mm:ss")}}</h3>
+      <h3 class="lead mb-4">Orario del circuito:{{now.tz(race.event.timezone).format("H:mm:ss")}}</h3>
 
-      <div class="container-md px-4 fs-4" v-for="sessione in event.sessioni" :key="sessione" id="riga">
+      <div class="container-md px-4 fs-4" v-for="sessione in race.event.schedule" :key="sessione" id="riga">
 
         <div class="row px-4 py-4">
-          <div class="col-sm-4">
-            {{sessione.nome}}
+          <div class="col-sm-3">
+            {{sessione.name}}
           </div>
-          <div class="col-sm-4">
-            {{sessione.date}}
+          <div class="col-sm-3">
+            {{sessione.datetime.format("DD/MM/YYYY")}}
           </div>
-          <div class="col-sm-4">
-            {{sessione.sessionMyTime}}
+          <div class="col-sm-3">
+            {{sessione.datetime.tz(myTimezone).format("H:mm")}}
           </div>
-          <div class="col-sm-4">
-            {{sessione.sessionTrackTime}}
+          <div class="col-sm-3">
+            {{sessione.datetime.tz(race.event.timezone).format("H:mm")}}
           </div>
         </div>
       </div>
@@ -32,14 +32,30 @@
 </template>
 
 <script>
+
+import moment from "moment-timezone"
+
+
 export default {
   props: {
-    event: null,
+    race: null,
   },
   data () {
     return {
+      myTimezone: moment.tz.guess(),
+      now: moment(),
+      intervalHandler:null
     }
-  }
+  },
+  mounted() {
+    this.intervalHandler = setInterval(() => {
+      this.now = moment()
+    }, 1000);
+  },
+  unmounted() {
+    clearInterval(this.intervalHandler)
+  },
+
 }
 </script>
 

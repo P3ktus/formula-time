@@ -1,8 +1,12 @@
 <template>
   <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Storico</h1>
+    <div class="container-md px-4 py-3 my-3" id="dropdown">
+      mettere due dropdown menus
+    </div>
     <div v-if="event">
       <h1 class="display-5 fw-bold">{{event.name}}</h1>
-
+      
       <div class="container-md px-4 fs-4" id="legenda">
         <div class="col-sm-4">
             Posizione
@@ -69,4 +73,5 @@ export default {
     background-color: lightgrey;
     color: black;
   }
+
 </style>

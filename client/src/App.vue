@@ -10,7 +10,6 @@
 
 <script>
 
-import axios from "axios"
 import ItemHeader from './components/ItemHeader.vue'
 import ItemFooter from './components/ItemFooter.vue'
 
@@ -20,18 +19,6 @@ export default {
     ItemHeader,
     ItemFooter
   },
-  data () {
-    return {
-      event: null
-    }
-  },
-  mounted() {
-    axios.get("http://localhost:8000/event").then((res) => {
-      console.log("First", res.data, res.data.name);
-      this.event = {...res.event.data, startDate: new Date(res.data.startDate), endDate: new Date(res.data.endDate)};
-    })
-
-  }
 }
 </script>
 

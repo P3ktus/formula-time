@@ -1,35 +1,35 @@
 import { createRouter, createWebHistory } from "vue-router"
-import ItemGranpremio from '../components/ItemGranpremio.vue'
-import ItemCalendario from '../components/ItemCalendario.vue'
-import ItemClassifica from '../components/ItemClassifica.vue'
-import ItemPiloti from '../components/ItemPiloti.vue'
-import ItemStorico from '../components/ItemStorico.vue'
+import ViewHome from '../views/ViewHome.vue'
+import ViewCalendario from '../views/ViewCalendario.vue'
+import ViewClassifica from '../views/ViewClassifica.vue'
+import ViewPiloti from '../views/ViewPiloti.vue'
+import ViewStorico from '../views/ViewStorico.vue'
 
 const routes = [
     {
         path: '/',
         name: 'Home', 
-        component: ItemGranpremio
+        component: ViewHome
     },
     {
         path: '/calendario',
         name: 'Calendario', 
-        component: ItemCalendario 
+        component: ViewCalendario 
     },
     {
         path: '/classifica',
         name: 'Classifica', 
-        component: ItemClassifica
+        component: ViewClassifica
     },
     {
         path: '/piloti',
         name: 'Piloti', 
-        component: ItemPiloti
+        component: ViewPiloti
     },
     {
         path: '/storico',
         name: 'Storico', 
-        component: ItemStorico
+        component: ViewStorico
     },
 ]
 
