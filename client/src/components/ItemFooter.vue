@@ -18,10 +18,7 @@
 export default {
   data () {
     return {
-      
-      classifica: 'Classifica',
-      piloti: 'Piloti',
-      storico: 'Storico',
+    
     }
   }
 }
