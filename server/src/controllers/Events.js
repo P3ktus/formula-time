@@ -85,6 +85,7 @@ const buildEvent = async (race_id) => {
   });
   const sessions = await Sessions.findAll({
     where: { race_id: { [Op.eq]: race_id } },
+    order: [["datetime", "ASC"]],
   });
   const schedule = [
     ...sessions,
