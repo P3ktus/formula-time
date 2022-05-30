@@ -74,12 +74,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#riga:nth-child(even) {
+#riga:nth-child(odd) {
   background-color: white;
   color: black;
 }
 
-#riga:nth-child(odd) {
+#riga:nth-child(even) {
   background-color: #e10600;
   color: white;
 }
