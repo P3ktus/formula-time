@@ -16,9 +16,6 @@ export default {
   data () {
     return {
       logo: 'FormulaTime',
-      classifica: 'Classifica',
-      piloti: 'Piloti',
-      storico: 'Storico',
     }
   }
 }

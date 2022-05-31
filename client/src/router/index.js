@@ -5,6 +5,7 @@ import ViewClassifica from '../views/ViewClassifica.vue'
 import ViewPiloti from '../views/ViewPiloti.vue'
 import ViewStorico from '../views/ViewStorico.vue'
 import ViewDona from '../views/ViewDona.vue'
+import ViewBiografia from '../views/ViewBiografia.vue'
 
 const routes = [
     {
@@ -25,7 +26,7 @@ const routes = [
     {
         path: '/piloti',
         name: 'Piloti', 
-        component: ViewPiloti
+        component: ViewBiografia
     },
     {
         path: '/storico',
