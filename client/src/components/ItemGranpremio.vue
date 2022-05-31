@@ -37,7 +37,16 @@
           </div>
         </div>
       </div>
-      <ItemTable v-if="race.results" :data="race.results" :headers="[]" />
+      <ItemTable
+        v-if="hasResults()"
+        :data="race.results"
+        :headers="[
+          { label: 'Pilota', key: 'driverName' },
+          { label: 'Scuderia', key: 'carConstructorName' },
+          { label: 'Punti', key: 'points' },
+        ]"
+        class="results"
+      />
     </div>
     <div v-else>Loading...</div>
   </div>
@@ -69,6 +78,11 @@ export default {
   components: {
     ItemTable,
   },
+  methods: {
+    hasResults() {
+      return this.race?.results && this.race.results.length > 0;
+    },
+  },
 };
 </script>
 
@@ -82,5 +96,9 @@ export default {
 #riga:nth-child(even) {
   background-color: #e10600;
   color: white;
+}
+
+.results {
+  padding: 40px 20px;
 }
 </style>

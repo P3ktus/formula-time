@@ -1,15 +1,15 @@
 import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
-  const Constructor = sequelize.define(
-    "constructors",
+  const CarConstructor = sequelize.define(
+    "car_constructors",
     {
-      constructor_id: {
+      car_constructor_id: {
         type: DataTypes.BIGINT,
         primaryKey: true,
         autoIncrement: true,
       },
-      constructor_ref: {
+      car_constructor_ref: {
         type: DataTypes.STRING,
       },
       name: {
@@ -26,5 +26,5 @@ export default (sequelize) => {
       timestamps: false,
     }
   );
-  return Constructor;
+  return CarConstructor;
 };

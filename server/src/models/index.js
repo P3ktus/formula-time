@@ -2,7 +2,7 @@ import sequelize from "./initOrm";
 
 import CircuitsInit from "./Circuits";
 import ConstructorResultsInit from "./ConstructorResults";
-import ConstructorsInit from "./Constructors";
+import CarConstructorInit from "./CarConstructors";
 import ConstructorStandingsInit from "./ConstructorStandings";
 import DriversInit from "./Drivers";
 import DriverStandingsInit from "./DriverStandings";
@@ -12,7 +12,7 @@ import SessionInit from "./Sessions";
 
 const Circuits = CircuitsInit(sequelize);
 const ConstructorResults = ConstructorResultsInit(sequelize);
-const Constructors = ConstructorsInit(sequelize);
+const CarConstructor = CarConstructorInit(sequelize);
 const ConstructorStandings = ConstructorStandingsInit(sequelize);
 const Drivers = DriversInit(sequelize);
 const DriverStandings = DriverStandingsInit(sequelize);
@@ -20,17 +20,28 @@ const Races = RacesInit(sequelize);
 const Results = ResultsInit(sequelize);
 const Sessions = SessionInit(sequelize);
 
+Results.belongsTo(CarConstructor, { foreignKey: "car_constructor_id" });
+CarConstructor.hasMany(Results, { foreignKey: "car_constructor_id" });
+
 ConstructorResults.belongsTo(Races, { foreignKey: "race_id" });
 Races.hasMany(ConstructorResults, { foreignKey: "race_id" });
 
-ConstructorResults.belongsTo(Constructors, { foreignKey: "constructor_id" });
-Constructors.hasMany(ConstructorResults, { foreignKey: "constructor_id" });
+ConstructorResults.belongsTo(CarConstructor, {
+  foreignKey: "car_constructor_id",
+});
+CarConstructor.hasMany(ConstructorResults, {
+  foreignKey: "car_constructor_id",
+});
 
 ConstructorStandings.belongsTo(Races, { foreignKey: "race_id" });
 Races.hasMany(ConstructorStandings, { foreignKey: "race_id" });
 
-ConstructorStandings.belongsTo(Constructors, { foreignKey: "constructor_id" });
-Constructors.hasMany(ConstructorStandings, { foreignKey: "constructor_id" });
+ConstructorStandings.belongsTo(CarConstructor, {
+  foreignKey: "car_constructor_id",
+});
+CarConstructor.hasMany(ConstructorStandings, {
+  foreignKey: "car_constructor_id",
+});
 
 DriverStandings.belongsTo(Races, { foreignKey: "race_id" });
 Races.hasMany(DriverStandings, { foreignKey: "race_id" });
@@ -47,9 +58,6 @@ Races.hasMany(Results, { foreignKey: "race_id" });
 Results.belongsTo(Drivers, { foreignKey: "driver_id" });
 Drivers.hasMany(Results, { foreignKey: "driver_id" });
 
-Results.belongsTo(Constructors, { foreignKey: "constructor_id" });
-Constructors.hasMany(Results, { foreignKey: "constructor_id" });
-
 Sessions.belongsTo(Races, { foreignKey: "race_id" });
 Races.hasMany(Sessions, { foreignKey: "race_id" });
 
@@ -57,7 +65,7 @@ export {
   sequelize,
   Circuits,
   ConstructorResults,
-  Constructors,
+  CarConstructor,
   ConstructorStandings,
   Drivers,
   DriverStandings,

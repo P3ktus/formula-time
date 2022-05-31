@@ -1,34 +1,24 @@
 <template>
-  <table class="table">
-    <thead>
-      <tr v-for="header in headers" :key="header.key">
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th v-for="header in headers" :key="header.key" scope="col">
+            {{ header.label }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in data" :key="index">
+          <th>{{ index + 1 }}</th>
+          <td v-for="header in headers" :key="header.key">
+            {{ item[header.key] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>

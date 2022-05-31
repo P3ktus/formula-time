@@ -5,7 +5,7 @@ import {
   Circuits,
   Sessions,
   Drivers,
-  Constructors,
+  CarConstructor,
 } from "../models/index";
 import { pick } from "lodash";
 
@@ -41,11 +41,7 @@ export const getCalendar = [
     const currentEvent = await getCurrentEvent();
 
     const races = await Races.findAll({
-      where: {
-        datetime: {
-          [Op.between]: [from, to],
-        },
-      },
+      where: { datetime: { [Op.between]: [from, to] } },
     });
 
     const currentEventIndex = races.findIndex(
@@ -60,11 +56,7 @@ const getCurrentEvent = async () => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const race = await Races.findOne({
-    where: {
-      datetime: {
-        [Op.gt]: today,
-      },
-    },
+    where: { datetime: { [Op.gt]: today } },
     order: [["datetime", "ASC"]],
     limit: 1,
   });
@@ -74,7 +66,7 @@ const getCurrentEvent = async () => {
 const getRaceResults = async (race_id) => {
   return Results.findAll({
     where: { race_id: { [Op.eq]: race_id } },
-    include: [Drivers],
+    include: [Drivers, CarConstructor],
   });
 };
 

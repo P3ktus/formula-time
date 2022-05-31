@@ -49,7 +49,11 @@ export default {
         })
         .then((res) => {
           this.selectedEvent = {
-            results: res.data.results,
+            results: res.data.results.map((r) => ({
+              ...r,
+              driverName: `${r.driver.forename} ${r.driver.surname}`,
+              carConstructorName: r.car_constructor.name,
+            })),
             event: {
               ...res.data.event,
               datetime: moment(res.data.event.datetime),
