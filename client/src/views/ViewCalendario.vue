@@ -4,16 +4,16 @@
       :events="events"
       :selectedEvent="selectedEventIndex"
       :onSelect="selectEvent"
+      style="margin-top: 30px"
     />
     <ItemGranpremio :race="selectedEvent" />
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import moment from "moment-timezone";
 import ItemCalendario from "../components/ItemCalendario.vue";
 import ItemGranpremio from "../components/ItemGranpremio.vue";
+import { getCalendar, getCalendarEvent } from "../services/events";
 
 export default {
   components: {
@@ -28,45 +28,23 @@ export default {
     };
   },
   mounted() {
-    axios
-      .get(`http://localhost:8000/calendar`)
-      .then((res) => {
-        this.events = res.data.calendar;
-        this.selectEvent(res.data.currentEventIndex);
+    getCalendar()
+      .then(({ calendar, currentEventIndex }) => {
+        this.events = calendar;
+        this.selectEvent(currentEventIndex);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.error(err));
   },
   methods: {
     selectEvent(index) {
-      console.log("AAA");
       this.selectedEventIndex = index;
       this.selectedEvent = null;
-      axios
-        .get(`http://localhost:8000/event`, {
-          params: { race_id: this.events[index].race_id },
-        })
-        .then((res) => {
-          this.selectedEvent = {
-            results: res.data.results.map((r) => ({
-              ...r,
-              driverName: `${r.driver.forename} ${r.driver.surname}`,
-              carConstructorName: r.car_constructor.name,
-            })),
-            event: {
-              ...res.data.event,
-              datetime: moment(res.data.event.datetime),
-              schedule: res.data.event.schedule.map((s) => ({
-                ...s,
-                datetime: moment(s.datetime),
-              })),
-            },
-          };
+      getCalendarEvent(this.events[index].race_id)
+        .then((event) => {
+          this.selectedEvent = event;
         })
         .catch((err) => {
-          console.log(err);
-          this.error = true;
+          console.error(err);
         });
     },
   },

@@ -6,6 +6,7 @@ import {
   Sessions,
   Drivers,
   CarConstructor,
+  sequelize,
 } from "../models/index";
 import { pick } from "lodash";
 
@@ -32,23 +33,32 @@ export const getEvent = [
 
 export const getCalendar = [
   async (req, res) => {
-    const from = new Date();
-    from.setDate(0);
-    from.setMonth(0);
-    const to = new Date(from.getTime());
-    to.setFullYear(from.getFullYear() + 1);
+    const seasonParam = req.query.season;
+    const season = seasonParam != null ? seasonParam : new Date().getFullYear();
 
     const currentEvent = await getCurrentEvent();
 
     const races = await Races.findAll({
-      where: { datetime: { [Op.between]: [from, to] } },
+      where: { year: { [Op.eq]: season } },
     });
 
     const currentEventIndex = races.findIndex(
       (race) => race.race_id === currentEvent.race_id
     );
 
-    res.json({ calendar: races, currentEventIndex });
+    res.json({
+      calendar: races,
+      currentEventIndex: currentEventIndex != -1 ? currentEventIndex : 0,
+    });
+  },
+];
+
+export const getSeasons = [
+  async (req, res) => {
+    const [seasons] = await sequelize.query(
+      "SELECT DISTINCT year from races order by year DESC"
+    );
+    res.json(seasons.map((s) => s.year));
   },
 ];
 

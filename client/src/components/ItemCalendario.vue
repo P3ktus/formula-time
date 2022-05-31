@@ -1,7 +1,7 @@
 <template>
-  <div class="px-4 py-5 my-5 text-center">
+  <div class="text-center">
     <h1 class="display-5 fw-bold">Calendario</h1>
-    <div class="container-md px-4 py-4 my-5 fs-3 wrapper fw-bold">
+    <div class="container-md py-4 fs-3 wrapper fw-bold">
       <div
         v-for="(event, index) in events"
         @click="onSelect(index)"

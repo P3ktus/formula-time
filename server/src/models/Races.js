@@ -33,6 +33,7 @@ export default (sequelize) => {
     },
     {
       timestamps: false,
+      modelName: "races",
     }
   );
   return Races;

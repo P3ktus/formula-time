@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4 py-5 my-5 text-center">
+  <div class="my-5 text-center">
     <div v-if="race">
       <h1 class="display-5 fw-bold">{{ race.event.name }}</h1>
       <h3 class="lead mb-4">{{ race.event.datetime.format("DD/MM/YYYY") }}</h3>
