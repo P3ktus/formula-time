@@ -6,6 +6,8 @@ import ViewPiloti from "../views/ViewPiloti.vue";
 import ViewStorico from "../views/ViewStorico.vue";
 import ViewDona from "../views/ViewDona.vue";
 import ViewBiografia from "../views/ViewBiografia.vue";
+import ViewDonaSuccess from "../views/ViewDonaSuccess.vue";
+import ViewDonaCancel from "../views/ViewDonaCancel.vue";
 
 const routes = [
   {
@@ -42,6 +44,16 @@ const routes = [
     path: "/dona",
     name: "Dona",
     component: ViewDona,
+  },
+  {
+    path: "/dona/success",
+    name: "Dona Success",
+    component: ViewDonaSuccess,
+  },
+  {
+    path: "/dona/cancel",
+    name: "Dona Cancel",
+    component: ViewDonaCancel,
   },
 ];
 

@@ -22,6 +22,8 @@ router.post("/donations", Donations.createDonationIntent);
 
 router.get("/donations", Donations.getDonations);
 
+router.post("/webhook", Donations.stripeWebHook);
+
 export default router;
 
 //COMMENTS

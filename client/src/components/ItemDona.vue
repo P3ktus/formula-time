@@ -111,8 +111,8 @@ export default {
 
       this.loading = true;
       sendDonationsAPI(amount, name, lastName, email, phone, msg)
-        .then(() => {
-          this.$router.go();
+        .then((redirectUri) => {
+          window.location.href = redirectUri;
           this.loading = false;
         })
         .catch((err) => {
