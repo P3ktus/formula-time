@@ -33,6 +33,12 @@ export default (sequelize) => {
       url: {
         type: DataTypes.TEXT,
       },
+      bio: {
+        type: DataTypes.TEXT,
+      },
+      img: {
+        type: DataTypes.STRING,
+      },
     },
     {
       timestamps: false,

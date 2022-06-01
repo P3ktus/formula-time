@@ -3,7 +3,12 @@
     <div v-if="race">
       <h1 class="display-5 fw-bold">{{ race.event.name }}</h1>
       <h3 class="lead mb-4">{{ race.event.datetime.format("DD/MM/YYYY") }}</h3>
-      <img class="img-fluid" alt="circuitLayout.png" />
+      <img
+        class="img-fluid circuit-img"
+        :src="getCircuitImg(race.event)"
+        onerror="if (this.src != '@/assets/no_data.png') this.src = '@/assets/no_data.png';"
+        style="margin-bottom: 20px"
+      />
       <!-- immagine responsive !-->
       <h3 class="lead mb-4">
         Orario locale: {{ now.tz(myTimezone).format("H:mm:ss") }}
@@ -82,6 +87,9 @@ export default {
     hasResults() {
       return this.race?.results && this.race.results.length > 0;
     },
+    getCircuitImg(race) {
+      return `http://localhost:8000/assets/${race.circuit.img}`;
+    },
   },
 };
 </script>
@@ -100,5 +108,9 @@ export default {
 
 .results {
   padding: 40px 20px;
+}
+
+.circuit-img {
+  max-height: 280px;
 }
 </style>

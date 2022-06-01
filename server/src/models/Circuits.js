@@ -36,6 +36,9 @@ export default (sequelize) => {
       timezone: {
         type: DataTypes.STRING,
       },
+      img: {
+        type: DataTypes.STRING,
+      },
     },
     {
       timestamps: false,

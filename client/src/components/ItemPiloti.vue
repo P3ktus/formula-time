@@ -1,64 +1,35 @@
 <template>
-  <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">Piloti</h1>
-
-    <div class="container-md px-4 py-4 my-5 fw-bold" id="pilotCards">
-
-      <div class="row g-3">
-          <div class="col12 col-md-6 col-lg-4">
-            <div class="card">
-              <img src="https://www.formula1.com/content/fom-website/en/drivers/charles-leclerc/_jcr_content/image.img.1920.medium.jpg/1646818893219.jpg" class="card-img-top" alt="pilotPortrait.png">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">Charles Leclerc</h5> <!-- nomepilota --> 
-                <p class="card-text">Scuderia Ferrari</p> <!-- nomescuderia --> 
-              </div>
-            </div>
-          </div>
-
-          <div class="col12 col-md-6 col-lg-4">
-            <div class="card">
-              <img src="https://www.formula1.com/content/fom-website/en/drivers/charles-leclerc/_jcr_content/image.img.1920.medium.jpg/1646818893219.jpg" class="card-img-top" alt="pilotPortrait.png">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">Charles Leclerc</h5> <!-- nomepilota --> 
-                <p class="card-text">Scuderia Ferrari</p> <!-- nomescuderia --> 
-              </div>
-            </div>
-          </div>
-
-          <div class="col12 col-md-6 col-lg-4">
-            <div class="card">
-              <img src="https://www.formula1.com/content/fom-website/en/drivers/charles-leclerc/_jcr_content/image.img.1920.medium.jpg/1646818893219.jpg" class="card-img-top" alt="pilotPortrait.png">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">Charles Leclerc</h5> <!-- nomepilota --> 
-                <p class="card-text">Scuderia Ferrari</p> <!-- nomescuderia --> 
-              </div>
-            </div>
-          </div>
-      </div>
-        
+  <div class="card">
+    <img :src="getDriverPic(driver)" class="card-img-top" alt="Driver Pic" />
+    <div class="card-body">
+      <h5 class="card-title fw-bold">
+        {{ driver.forename }} {{ driver.surname }}
+      </h5>
+      <!-- nomepilota -->
+      <p class="card-text">{{ driver.dob }}</p>
+      <!-- nomescuderia -->
     </div>
-
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    event: null,
+  props: ["driver"],
+  methods: {
+    getDriverPic(driver) {
+      return `http://localhost:8000/assets/${driver.img}`;
+    },
   },
-  data () {
-    return {
-    }
-  }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  
-  .card-body{
-    background-color: #e10600;
-    color: white;
-  }
-  
+.card-body {
+  background-color: #e10600;
+  color: white;
+}
+.card {
+  cursor: pointer;
+}
 </style>

@@ -9,6 +9,7 @@ import DriverStandingsInit from "./DriverStandings";
 import RacesInit from "./Races";
 import ResultsInit from "./Results";
 import SessionInit from "./Sessions";
+import DonationsInit from "./Donations";
 
 const Circuits = CircuitsInit(sequelize);
 const ConstructorResults = ConstructorResultsInit(sequelize);
@@ -19,6 +20,7 @@ const DriverStandings = DriverStandingsInit(sequelize);
 const Races = RacesInit(sequelize);
 const Results = ResultsInit(sequelize);
 const Sessions = SessionInit(sequelize);
+const Donations = DonationsInit(sequelize);
 
 Results.belongsTo(CarConstructor, { foreignKey: "car_constructor_id" });
 CarConstructor.hasMany(Results, { foreignKey: "car_constructor_id" });
@@ -72,4 +74,5 @@ export {
   Races,
   Results,
   Sessions,
+  Donations,
 };
