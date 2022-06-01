@@ -10,7 +10,7 @@
         :key="driver.driver_id"
         :driver="driver"
         class="pilot-card"
-        @click="goToDriver(driver.driver_id)"
+        @click="goToDriver(driver)"
       />
     </div>
     <div v-else>Loading...</div>
@@ -34,9 +34,9 @@ export default {
       .catch((err) => console.error(err));
   },
   methods: {
-    goToDriver(driverId) {
-      console.log(driverId);
-      this.$router.push(`/piloti/${driverId}`);
+    goToDriver(driver) {
+      if (driver.bio) this.$router.push(`/piloti/${driver.driver_id}`);
+      else window.open(driver.url, "_blank").focus();
     },
   },
 };

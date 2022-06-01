@@ -61,4 +61,8 @@ a {
 a:hover {
   color: white;
 }
+
+.item {
+  cursor: pointer;
+}
 </style>

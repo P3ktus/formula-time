@@ -63,6 +63,7 @@
             class="form-control"
             id="phone"
             placeholder="3333333333"
+            pattern="[0-9]{10}"
           />
         </div>
         <div class="col-12">
