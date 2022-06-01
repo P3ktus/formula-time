@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-md">
     <h1 class="display-5 py-4 fw-bold">Piloti</h1>
     <div
       class="d-flex flex-wrap align-items-center justify-content-center"
