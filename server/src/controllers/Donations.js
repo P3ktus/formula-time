@@ -10,6 +10,7 @@ const ENDPOINT_SECRET =
   "whsec_84fb177c3ecc9fcdb4abff8f74c46619b75b927ea7482863bb2a51a6a7302176";
 
 export const createDonationIntent = [
+  
   async (req, res) => {
     try {
       const { amount, name, lastName, email, phone, msg } = req.body;
