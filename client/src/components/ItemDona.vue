@@ -19,6 +19,8 @@
               class="form-control"
               id="amount"
               placeholder="Inserisci donazione..."
+              min="1"
+              step="1"
               required
             />
             <span class="input-group-text">.00</span>
